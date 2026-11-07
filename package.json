@@ -1,0 +1,57 @@
+{
+  "name": "@seltra/frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit && npm run typecheck --workspace @seltra/orderbook-api",
+    "test": "tsx --test packages/sdk/src/*.test.ts src/lib/*.test.ts src/config/*.test.ts && npm test --workspace @seltra/orderbook-api",
+    "lint": "next lint",
+    "api": "npm run dev --workspace @seltra/orderbook-api",
+    "docs:index": "node scripts/build-docs-search.mjs",
+    "docs:check": "node scripts/check-docs.mjs",
+    "docs:dev": "npm run docs:index && next dev",
+    "prebuild": "npm run docs:index && npm run docs:check"
+  },
+  "dependencies": {
+    "@reown/appkit": "^1.8.22",
+    "@reown/appkit-adapter-wagmi": "^1.8.22",
+    "@tanstack/react-query": "^5.51.24",
+    "gray-matter": "^4.0.3",
+    "lightweight-charts": "^4.2.0",
+    "lucide-react": "^0.468.0",
+    "mermaid": "^11.16.0",
+    "next": "^14.2.5",
+    "next-mdx-remote": "^5.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-pretty-code": "^0.14.4",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "shiki": "^4.3.1",
+    "viem": "^2.18.8",
+    "wagmi": "^2.12.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6",
+    "typescript": "^5.5.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
+}
